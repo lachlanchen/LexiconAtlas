@@ -1,0 +1,15 @@
+node_modules/
+dist/
+data/
+*.log
+*.sqlite3*
+*.db
+screenshots/
+.env*
+
+
+# Downloadable datasets are release assets, not source files.
+/releases/
+*.sqlite3
+*.sqlite3-*
+*.partial
