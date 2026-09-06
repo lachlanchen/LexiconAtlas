@@ -1,107 +1,63 @@
+[English](README.md) · [العربية](i18n/README.ar.md) · [Español](i18n/README.es.md) · [Français](i18n/README.fr.md) · [日本語](i18n/README.ja.md) · [한국어](i18n/README.ko.md) · [Tiếng Việt](i18n/README.vi.md) · [中文 (简体)](i18n/README.zh-Hans.md) · [中文（繁體）](i18n/README.zh-Hant.md) · [Deutsch](i18n/README.de.md) · [Русский](i18n/README.ru.md)
+
+[![LazyingArt banner](https://github.com/lachlanchen/lachlanchen/raw/main/figs/banner.png)](https://github.com/lachlanchen/lachlanchen/blob/main/figs/banner.png)
+
 # Lexicon Atlas
 
-### An English word knowledge graph, explored in three dimensions
+*Explore the roots, forms, meanings, and translations of words as a local three-dimensional knowledge graph.*
 
-Words are not isolated dictionary entries. They share roots, borrow forms across
-languages, develop meanings, and leave traces of their history. Lexicon Atlas
-makes those connections visible in one explorable network.
+[![Release](https://img.shields.io/github/v/release/lachlanchen/LexiconAtlas?label=dataset)](https://github.com/lachlanchen/LexiconAtlas/releases/latest)
+[![Node.js 24+](https://img.shields.io/badge/Node.js-24%2B-339933?logo=nodedotjs&logoColor=white)](package.json)
+[![Local first](https://img.shields.io/badge/runtime-local--first-D5F879)](docs/DATASET.md)
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-%23ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/lachlanchen)
 
-[![The English word knowledge graph in Lexicon Atlas](docs/images/atlas-desktop.png)](https://github.com/lachlanchen/LexiconAtlas/releases/latest)
+Lexicon Atlas is a read-only browser for a real lexical graph prepared by
+[Local Knowledge Terminal](https://github.com/lachlanchen/LocalKnowledgeTerminal).
+It turns words, morphemes, recorded historical forms, meanings, pronunciations,
+translations, assertions, and source references into a network that can be searched
+and inspected without sending the collection to a cloud service.
 
-**[Download the graph database](https://github.com/lachlanchen/LexiconAtlas/releases/latest)**
-| **[Dataset guide](docs/DATASET.md)**
-| **[Local Knowledge Terminal](https://github.com/lachlanchen/LocalKnowledgeTerminal)**
+| Donate | PayPal | Stripe |
+| --- | --- | --- |
+| [![Donate](https://img.shields.io/badge/Donate-LazyingArt-0EA5E9?style=for-the-badge&logo=kofi&logoColor=white)](https://chat.lazying.art/donate) | [![PayPal](https://img.shields.io/badge/PayPal-RongzhouChen-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/RongzhouChen) | [![Stripe](https://img.shields.io/badge/Stripe-Donate-635BFF?style=for-the-badge&logo=stripe&logoColor=white)](https://buy.stripe.com/aFadR8gIaflgfQV6T4fw400) |
 
-## A map of words, not just a collection of cards
+[![Actual Lexicon Atlas desktop view](docs/images/atlas-desktop.png)](https://github.com/lachlanchen/LexiconAtlas/releases/latest)
 
-The graph connects English words with roots, prefixes, suffixes, historical forms,
-pronunciations, senses, and translations. Language tags keep forms and meanings
-distinct. English, Chinese, Japanese, French, and Arabic are represented in the
-working system; coverage varies, and the schema accommodates further languages.
+*An actual application screenshot from the local working snapshot; it is not a generated mockup. The public release has a smaller, deliberately filtered dataset.*
 
-- Follow a word into its components and recorded history.
-- Explore words connected to a root or affix.
-- Find multilingual meanings and translation relationships.
-- Move from the complete network to a one-, two-, or three-hop neighborhood.
-- Inspect relationship direction, confidence, status, and stored source references.
-- Keep draft and accepted knowledge distinguishable.
+## What it shows
 
-Knowledge is prepared upstream by **Local Knowledge Terminal (LKT)** using local
-language-model inference, dictionaries, and book retrieval (RAG). Atlas is the
-independent, read-only exploration interface. It does not call a cloud model,
-generate citations, or modify the working knowledge database.
+- Search words and labels, then follow directed relationships through one-, two-, or three-hop neighborhoods.
+- Inspect roots, prefixes, suffixes, historical forms, meanings, pronunciations, translations, confidence, lifecycle status, and stored source identifiers when present.
+- Filter by node type, language, evidence basis, and status; switch between spatial and planar layouts.
+- Export the currently visible subgraph as JSON.
+- Render the force layout in a Web Worker and display nodes and links with Three.js.
+- Adapt the same interface to desktop and narrow screens.
 
-## Explore it
+Lexicon Atlas visualizes stored claims; it does not infer a word history from spatial
+proximity. LKT owns ingestion, retrieval, local-model enrichment, and repair. Atlas
+does not call a cloud model, generate citations, or write back to the working graph.
 
-Three.js renders the network while a D3 three-dimensional force layout runs in a
-Web Worker. Instanced nodes and batched links display the full graph without a
-small card-sized node limit.
+## Current public snapshot
 
-- Search words and multilingual labels.
-- Filter categories, languages, relationship status, and evidence basis.
-- Switch between spatial and planar views.
-- Orbit, zoom, fit the graph, or pause layout movement.
-- Select nodes to inspect connections and available evidence.
-- Export the currently visible graph as JSON.
+[v0.1.0](https://github.com/lachlanchen/LexiconAtlas/releases/tag/v0.1.0),
+published 2026-09-05, provides a dated SQLite database, manifest, and SHA-256 list.
+The manifest reports:
 
-The interface also adapts to narrower screens:
+| Record | Count | Record | Count |
+| --- | ---: | --- | ---: |
+| Entities | 15,925 | Terms | 9,484 |
+| Morphemes | 1,573 | Historical forms | 404 |
+| Meanings | 2,180 | Translations | 847 |
+| Pronunciations | 1,046 | Typed entity edges | 15,197 |
+| Relation assertions | 9,255 | Evidence records | 13,431 |
 
-<img src="docs/images/atlas-mobile.png" alt="Lexicon Atlas on a mobile-sized viewport" width="360">
+English is the main term language; Chinese, Japanese, French, and Arabic are also
+represented, with uneven coverage. `accepted` is a pipeline state, not a guarantee
+of factual or linguistic accuracy. Missing senses, sparse histories, duplicates,
+and incorrect links remain possible.
 
-These are actual application screenshots, not generated mockups. They show the
-local working snapshot. The public dataset excludes question/answer and grammar
-records, so its totals differ from the full local database shown in the images.
-
-## Run on Windows
-
-Requires **Node.js 24 or later** and Git. The server binds to localhost only.
-
-```powershell
-git clone https://github.com/lachlanchen/LexiconAtlas.git
-cd LexiconAtlas
-npm ci
-npm run build
-New-Item -ItemType Directory -Force data | Out-Null
-Invoke-WebRequest "https://github.com/lachlanchen/LexiconAtlas/releases/latest/download/english-word-graph.sqlite3" -OutFile "data/english-word-graph.sqlite3"
-$env:LKT_GRAPH_DB = (Resolve-Path "data/english-word-graph.sqlite3").Path
-npm start
-```
-
-Open **http://127.0.0.1:8091/**. Keep that terminal running while using the app.
-
-Set `LKT_GRAPH_DB` again when opening a new PowerShell session. It can also point
-to your own compatible LKT snapshot. `launch.cmd` builds and starts the app when
-this variable is configured or a local sync manifest is present.
-
-## Run on Linux or macOS
-
-```bash
-git clone https://github.com/lachlanchen/LexiconAtlas.git
-cd LexiconAtlas
-npm ci
-npm run build
-mkdir -p data
-curl -fL https://github.com/lachlanchen/LexiconAtlas/releases/latest/download/english-word-graph.sqlite3 -o data/english-word-graph.sqlite3
-LKT_GRAPH_DB="$PWD/data/english-word-graph.sqlite3" npm start
-```
-
-Assets, fonts, and scripts are bundled locally. After setup and downloading a
-database, normal exploration does not require an internet connection.
-
-## Downloadable database
-
-The release contains a **real, dated SQLite graph snapshot**, not invented demo
-nodes. Its manifest records counts, language coverage, statuses, omissions, and a
-SHA-256 checksum. Database binaries are release assets, **never committed to Git**.
-
-The public export retains lexical entities, typed relationships, meanings,
-translations, pronunciations, and source-reference identifiers. It omits book
-passages, OCR text, prompts, inquiry history, worker jobs, runtime state, and
-arbitrary JSON payloads. The full working database stays local.
-
-See the [dataset guide](docs/DATASET.md) for schema, integrity checks, and limitations.
-
-## Separate knowledge from presentation
+## Architecture and boundaries
 
 ```text
 Local books and dictionaries
@@ -117,51 +73,98 @@ Local books and dictionaries
        Lexicon Atlas
 ```
 
-LKT owns ingestion, inference, enrichment, and repair. Atlas renders stored
-knowledge. Releases are snapshots, not a live-growing service; later exports can
-reflect upstream enrichment and corrections.
+The server binds to localhost. After the source, dependencies, and database have
+been downloaded, normal exploration is local. Releases are fixed snapshots rather
+than a live-growing service, and Atlas does not replace the private LKT working
+database.
 
-Owners can copy a consistent Pi snapshot using the SQLite backup API:
+## Repository map
+
+| Path | Purpose |
+| --- | --- |
+| `src/main.js` | Search, filtering, inspection, and responsive controls |
+| `src/scene.js` | WebGL graph rendering and interaction |
+| `src/layout.worker.js` | Three-dimensional force layout in a worker |
+| `lib/snapshot.mjs` | Read-only SQLite queries and graph projection |
+| `server.mjs` | Localhost API and static asset server |
+| `scripts/export-public.mjs` | Allowlisted graph-only snapshot export |
+| `scripts/sync-pi.mjs` | Consistent remote SQLite backup workflow |
+| `docs/DATASET.md` | Schema, exclusions, verification, and rights notes |
+
+## Quick start
+
+Requires Git and **Node.js 24 or later**.
+
+Windows PowerShell:
 
 ```powershell
-$env:LKT_PI_SSH = "your-user@your-pi"
-$env:LKT_PI_DATABASE = "/absolute/path/to/knowledge.sqlite3"
-npm run sync
+git clone https://github.com/lachlanchen/LexiconAtlas.git
+cd LexiconAtlas
+npm ci
+npm run build
+New-Item -ItemType Directory -Force data | Out-Null
+Invoke-WebRequest "https://github.com/lachlanchen/LexiconAtlas/releases/latest/download/english-word-graph.sqlite3" -OutFile "data/english-word-graph.sqlite3"
+$env:LKT_GRAPH_DB = (Resolve-Path "data/english-word-graph.sqlite3").Path
 npm start
 ```
 
-Use normal SSH authentication. Never commit credentials or copied data. Unset
-`LKT_GRAPH_DB` to follow the sync manifest instead of an explicit database path.
+Linux or macOS:
 
-## Development
+```bash
+git clone https://github.com/lachlanchen/LexiconAtlas.git
+cd LexiconAtlas
+npm ci
+npm run build
+mkdir -p data
+curl -fL https://github.com/lachlanchen/LexiconAtlas/releases/latest/download/english-word-graph.sqlite3 -o data/english-word-graph.sqlite3
+LKT_GRAPH_DB="$PWD/data/english-word-graph.sqlite3" npm start
+```
+
+Open **http://127.0.0.1:8091/** and keep the terminal running. Database binaries
+belong in `data/` or release assets and are intentionally excluded from Git.
+
+## Development and validation
 
 ```bash
 npm test
 npm run build
 ```
 
-- `lib/snapshot.mjs`: read-only SQLite queries and graph projection.
-- `server.mjs`: localhost API and static asset delivery.
-- `src/layout.worker.js`: three-dimensional force layout.
-- `src/scene.js`: WebGL rendering and interaction.
-- `src/main.js`: search, filters, inspection, and responsive interface.
-- `scripts/export-public.mjs`: allowlisted graph-only dataset export.
+The tests cover catalog normalization, snapshot projections, status filtering,
+search, neighborhood limits, evidence grouping, and failure behavior. The build
+bundles Three.js, d3-force-3d, Vite, and the local font packages.
 
-Built with [Three.js](https://threejs.org/),
-[d3-force-3d](https://github.com/vasturiano/d3-force-3d),
-[Vite](https://vite.dev/), and Node.js SQLite.
+## Dataset, privacy, and rights
 
-## Current limits
+The exporter constructs a new database from allowlisted columns. The public snapshot
+omits original books and dictionaries, passages, OCR text, prompts, inquiry history,
+runtime state, arbitrary JSON, and private filesystem paths. Source references are
+identifiers, not generated citations. Integrity and checksum checks detect structural
+problems or accidental corruption; they do not prove each lexical claim.
 
-This is a developing graph, not an authoritative etymological dictionary.
-Accepted status records a pipeline decision, not guaranteed linguistic accuracy.
-Missing meanings, sparse histories, incorrect links, and duplicate semantic
-concepts remain possible. Layout cannot reconstruct missing facts.
+Read [the dataset guide](docs/DATASET.md) before publishing another snapshot. Only
+publish material you are entitled to share. Short source-derived definitions and
+linguistic descriptions can still require a rights review even when book passages
+are excluded. This repository currently has no license file, so public visibility
+alone does not grant permission to reuse its code or data.
 
-The first explorer version groups free word parts into the Roots filter; word
-definitions may appear under Connections rather than the inspector heading.
-An empty CSS import produces a build warning. Large-scene frame rate depends on
-the machine and is not yet optimized for every GPU.
+## Citation
 
-Upstream books and dictionaries are not redistributed or relicensed by this repo.
-See the dataset guide for source exclusions and third-party rights.
+If you use Lexicon Atlas in research, cite the repository. GitHub reads
+[CITATION.cff](CITATION.cff) and shows a **Cite this repository** panel on the repo page.
+
+```bibtex
+@software{chen_lexicon_atlas_2026,
+  author = {Chen, Lachlan},
+  title = {Lexicon Atlas: A Local-First Three-Dimensional Lexical Knowledge Graph Explorer},
+  year = {2026},
+  url = {https://github.com/lachlanchen/LexiconAtlas}
+}
+```
+
+## Status
+
+Lexicon Atlas is an early, developing explorer, not an authoritative etymological
+dictionary. The first release favors inspectability and explicit gaps over claims of
+completeness. Issues that identify reproducible data or interface problems are useful;
+upstream content corrections belong in LKT before a new filtered snapshot is exported.

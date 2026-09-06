@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use Lexicon Atlas, please cite this repository."
+type: software
+title: "Lexicon Atlas: A Local-First Three-Dimensional Lexical Knowledge Graph Explorer"
+version: 0.1.0
+date-released: 2026-09-05
+abstract: "A local-first, read-only three-dimensional explorer for a multilingual lexical knowledge graph prepared by Local Knowledge Terminal."
+authors:
+  - family-names: Chen
+    given-names: Lachlan
+    alias: lachlanchen
+repository-code: "https://github.com/lachlanchen/LexiconAtlas"
+url: "https://github.com/lachlanchen/LexiconAtlas/releases/latest"
+keywords:
+  - lexical knowledge graph
+  - etymology
+  - morphology
+  - multilingual lexicon
+  - local-first
+  - data visualization
+
